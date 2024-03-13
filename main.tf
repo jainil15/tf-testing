@@ -27,7 +27,7 @@ module "lb" {
   lb_security_groups = [module.instance.public_sg_id]
   subnet_ids         = module.vpc.public_subnet_ids
   vpc_id             = module.vpc.vpc_id
-  target_type        = "ip"
+  target_type        = "instance"
 }
 
 module "instance" {
@@ -89,7 +89,7 @@ module "ecs" {
   asg_id                 = module.asg.asg_id
   image_name             = "jainilp12/nginx-assignment:ac780d4dcb19d4d582b83d3bb355e7a9a4684da4"
   container_port         = 80
-  network_mode           = "awsvpc"
+  network_mode           = "bridge"
 
 }
 
